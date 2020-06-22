@@ -11,8 +11,6 @@ RUN apk add -U --no-cache ca-certificates
 WORKDIR /app
 COPY certs/ /app
 COPY --from=BUILDER /app/main /app
-COPY --from=CERTS /ec_key.pem /app/certs
-COPY --from=CERTS /cert.pem /app/certs
 WORKDIR /app
 EXPOSE 8080
 CMD ["./main"]
