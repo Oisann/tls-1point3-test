@@ -5,6 +5,9 @@ RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main .
 
 FROM alpine:3.12 as CERTS
 WORKDIR /certs
+RUN apk upgrade --update-cache --available && \
+    apk add openssl && \
+    rm -rf /var/cache/apk/*
 RUN openssl ecparam -out ec_key.pem -name secp256r1 -genkey
 RUN openssl req -new -key ec_key.pem -x509 -nodes -days 365 -out cert.pem
 
