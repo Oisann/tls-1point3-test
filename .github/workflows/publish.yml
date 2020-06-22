@@ -1,0 +1,17 @@
+name: Build
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build a new docker image release
+      uses: banool/gp-docker-action@1.0.2
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        image-name: tls-1point3-test
+        image-tag: latest
