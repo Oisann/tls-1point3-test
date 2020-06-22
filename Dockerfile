@@ -5,9 +5,6 @@ RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main .
 
 FROM alpine:3.12
 RUN apk add -U --no-cache ca-certificates
-#RUN apk upgrade --update-cache --available && \
-#    apk add openssl && \
-#    rm -rf /var/cache/apk/*
 WORKDIR /app
 WORKDIR /app/certs
 COPY certs/ /app/certs/
