@@ -4,6 +4,7 @@ package main
 
 import (
 	"crypto/tls"
+	"io/ioutil"
 	"log"
 	"net/http"
 )
@@ -13,6 +14,16 @@ func main() {
 	mux.HandleFunc("/", func(w http.ResponseWriter, req *http.Request) {
 		w.Header().Add("Strict-Transport-Security", "max-age=63072000")
 		w.Write([]byte("This server is running the Mozilla modern configuration.\n"))
+	})
+
+	mux.HandleFunc("/content", func(w http.ResponseWriter, r *http.Request) {
+		contents, err := ioutil.ReadFile("./files/content")
+		if err != nil {
+			panic(err) // or do something useful
+		}
+		w.WriteHeader(200)
+		w.Header().Add("Strict-Transport-Security", "max-age=63072000")
+		w.Write(contents)
 	})
 
 	cfg := &tls.Config{
