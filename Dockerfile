@@ -9,7 +9,8 @@ RUN apk add -U --no-cache ca-certificates
 #    apk add openssl && \
 #    rm -rf /var/cache/apk/*
 WORKDIR /app
-COPY certs/ /app
+WORKDIR /app/certs
+COPY certs/ /app/certs/
 COPY --from=BUILDER /app/main /app
 WORKDIR /app
 EXPOSE 8080
