@@ -7,6 +7,12 @@ A test web server that only accepts TLS 1.3.
 - `/` is a basic check to see if your application can talk to the server. It just returns a basic text response.
 - `/content` will serve a custom file.
 
+## Pre-built Docker image
+
+You can use the pre-built docker image from the Github Action running on master:
+
+    docker pull docker.pkg.github.com/oisann/tls-1point3-test/tls-1point3-test:latest
+
 ## Custom content file
 
 The `/content` path will look for a file in `./files/` named `content` and serve that.
