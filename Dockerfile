@@ -13,5 +13,5 @@ WORKDIR /app/certs
 COPY certs/ /app/certs/
 COPY --from=BUILDER /app/main /app
 WORKDIR /app
-EXPOSE 8080
+EXPOSE 443
 CMD ["./main"]
